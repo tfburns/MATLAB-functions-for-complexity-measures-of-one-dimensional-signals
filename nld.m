@@ -1,11 +1,12 @@
 function fd = nld(x)
-% input:    x       data
+% input:    x       data (we assume the data is non-negative in this implementation)
 % output:   fd      fractal dimension estimate (using NLD method)
+% Thank you to Timothy L. Corley (U Arizona) for noticing that an earlier version of this function failed to note the non-negative assumption on the input data
 
 N =      length(x); % get length of signal
 
 % amplitude normalization / set-up
-y =     zscore(x); % could use integral or window normalization techniques instead
+y =     zscore(x); % could use integral or window normalization techniques instead, and if we want to use negative values this should follow the special form of 'absolute-valued' regularization shown in equation 9 of Kalauzi et al. 2009
 NLDi =  zeros(1,N);
 
 % calculate NLDi with the upper limit of N and lower limit of i=2
